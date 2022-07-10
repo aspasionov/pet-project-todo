@@ -1,0 +1,12 @@
+{
+  "trailingComma": "none",
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": ["*po.js", "*tests.js", "*po.ts", "*tests.tsx"],
+      "options": {
+        "printWidth": 150
+      }
+    }
+  ]
+}

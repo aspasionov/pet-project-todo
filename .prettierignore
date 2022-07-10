@@ -1,0 +1,11 @@
+build
+coverage
+.deploy
+.yarn
+.github
+node_modules
+public
+tmp
+package-lock.json
+yarn-lock.json
+*.md

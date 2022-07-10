@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 12.18.3 ]
+        node-varsion: [ 12.18.3 ]
     steps:
       - uses: actions/checkout@v3
       - name: Staring node.js ${{ matrix.node-version }}

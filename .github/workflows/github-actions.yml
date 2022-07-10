@@ -16,10 +16,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: install packages
+      - name: install modules
         run: npm install
-      - name: check linter
-        run: npm run lint
       - name: build project
         run: npm run build
+      - name: lint code
+        run: npm run lint
 

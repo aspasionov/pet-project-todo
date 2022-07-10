@@ -1,15 +1,15 @@
 name: GitHub Actions Demo
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 jobs:
   init:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 17.x ]
+        node-version: [ 12.18.3 ]
     steps:
       - uses: actions/checkout@v3
       - name: Staring node.js ${{ matrix.node-version }}

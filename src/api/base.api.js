@@ -14,10 +14,13 @@ class HttpClient {
       headers: this.headers
     });
 
-    if (!res.ok) throw new Error(res.statusText);
+    // TODO need to fix this
 
-    if (options.parseResponse !== false && res.status !== 204)
+    // if (!res.ok) throw new Error(res.statusText);
+
+    if (options.parseResponse !== false && res.status !== 204) {
       return res.json();
+    }
 
     return undefined;
   }

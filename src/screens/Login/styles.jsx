@@ -21,6 +21,15 @@ export const FormItem = styled.div`
     height: 35px;
     padding: 0 20px;
   }
+  
+  &.error {
+    input {
+      border: 1px solid red;
+      &:focus {
+        outline: 1px solid red
+      }
+    }
+  }
 
   '& textarea': {
     width: 100%;
@@ -35,4 +44,10 @@ export const FormItem = styled.div`
 export const Form = styled.div`
   width: 400px;
   margin: auto;
+`;
+
+export const Error = styled.div`
+  font-size: 12px;
+  color: red;
+  transform: translateY(-18px);
 `;

@@ -1,12 +1,11 @@
-
-
-import React, { useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import React, {useEffect} from "react";
+import {useNavigate} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import HttpClient from '../api/base.api';
-import { UserContext } from '../context/UserContext';
+import {UserContext} from '../context/UserContext';
+import Preloader from '../components/Preloader';
 
-function AuthProvider({ children }) {
+function AuthProvider({children}) {
   const [user, setUser] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
   const [token, setToken] = React.useState(null);
@@ -16,41 +15,40 @@ function AuthProvider({ children }) {
   const navigate = useNavigate()
 
   const contextValue = React.useMemo(() => ({
-    loading,
     user,
     token,
     setUser,
     setToken,
-    setLoading,
-  }), [loading, user, token, setUser, setToken])
+  }), [ user, token, setUser, setToken])
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       setLoading(true)
       const key = localStorage.getItem('token');
       setToken(key);
 
       try {
-        if(key) {
+        if (key) {
           await client.setBearerAuth(key);
-          const { user: userData } = await client.get('me');
+          const {user: userData} = await client.get('me');
           userData.isLogin = true;
           setUser(userData);
+          navigate('/');
         }
       } catch {
         setToken(null)
       } finally {
-        setLoading(true);
-        navigate('/');
+        setLoading(false);
       }
     })()
-  },[])
+  }, [])
 
-  return (
-    <UserContext.Provider value={contextValue}>
-      {children}
-    </UserContext.Provider>
-  );
+  return (loading ?
+          <Preloader/>
+          :
+          <UserContext.Provider value={contextValue}>
+            {children}
+          </UserContext.Provider>)
 }
 
 export default AuthProvider;

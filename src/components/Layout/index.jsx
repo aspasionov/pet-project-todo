@@ -1,11 +1,41 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import useAuth from "../../hooks/useAuth";
 import { Wrapper, Header, Title, Aside, ToggleButton, Main } from './styles';
 
 const Layout = ({ children }) => {
   const [open, setOpen] = useState(false);
   const toggleDrawer = () => setOpen(!open);
+
+  const auth = useAuth();
+
+  const menuLinks = [
+    {
+      id: 1,
+      text: 'Login',
+      path: 'login',
+      protected: false
+    },
+    {
+      id: 2,
+      text: 'Register',
+      path: 'register',
+      protected: false
+    },
+    {
+      id: 3,
+      text: 'Home',
+      path: '',
+    },
+    {
+      id: 4,
+      text: 'Users',
+      path: 'users',
+      protected: true
+    }
+  ]
+
   return (
     <Wrapper open={open}>
       <Header>
@@ -17,13 +47,12 @@ const Layout = ({ children }) => {
           <span />
         </ToggleButton>
         <ul>
-          <li>
-            <NavLink to="login">To Login</NavLink>
-            <br />
-            <NavLink to="">Home</NavLink>
-            <br />
-            <NavLink to="users">Users</NavLink>
-          </li>
+          {menuLinks.filter(item => !Object.prototype.hasOwnProperty.call(item, 'protected') || item.protected !== !auth?.user)
+            .map(({ id, path, text, }) => (
+              <li key ={id}>
+                <NavLink to={path}>{text}</NavLink>
+              </li>
+            ))}
         </ul>
       </Aside>
 

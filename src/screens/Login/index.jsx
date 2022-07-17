@@ -69,7 +69,7 @@ const Login = () => {
             {fieldValidation('User') && <S.Error>{fieldValidation('User')}</S.Error>}
           </div>
           {!isLogin &&
-            <Input value={userData.username} type='text' name='username' placeholder='username' errorText={fieldValidation('username')} onChange={onChangeUserData}/>
+            <Input value={userData.username} name='username' placeholder='username' errorText={fieldValidation('username')} onChange={onChangeUserData}/>
           }
           <Input value={userData.email} type='email' name='email' placeholder='email' errorText={fieldValidation('email')} onChange={onChangeUserData}/>
 

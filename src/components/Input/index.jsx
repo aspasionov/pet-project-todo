@@ -6,7 +6,7 @@ import * as S from './styles'
 const Input = ({onChange, value, type, name, placeholder, errorText}) => (
   <>
     <S.FormItem className={errorText && 'error'}>
-      <input value={value} type={type} name={name} placeholder={placeholder} onChange={onChange}/>
+      <input value={value} type={type || 'text'} name={name} placeholder={placeholder} onChange={onChange}/>
     </S.FormItem>
     {errorText && <S.Error>{errorText}</S.Error>}
   </>

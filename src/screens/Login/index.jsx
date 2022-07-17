@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {useNavigate, useLocation} from 'react-router-dom';
 import HttpClient from '../../api/base.api';
 import useAuth from '../../hooks/useAuth';
+import Input  from '../../components/Input';
 import * as S from './styles';
 
 const Login = () => {
@@ -68,22 +69,11 @@ const Login = () => {
             {fieldValidation('User') && <S.Error>{fieldValidation('User')}</S.Error>}
           </div>
           {!isLogin &&
-            <>
-            <S.FormItem className={fieldValidation('username')  && 'error'}>
-              <input type="text" name="username" placeholder="username" onChange={onChangeUserData}/>
-            </S.FormItem>
-            {fieldValidation('username') && <S.Error>{fieldValidation('username')}</S.Error>}
-            </>
+            <Input value={userData.username} type='text' name='username' placeholder='username' errorText={fieldValidation('username')} onChange={onChangeUserData}/>
           }
-          <S.FormItem className={fieldValidation('email') || fieldValidation('User') && 'error'}>
-            <input type="mail" name="email" placeholder="email" onChange={onChangeUserData}/>
-          </S.FormItem>
-          {fieldValidation('email') && <S.Error>{fieldValidation('email')}</S.Error>}
+          <Input value={userData.email} type='email' name='email' placeholder='email' errorText={fieldValidation('email')} onChange={onChangeUserData}/>
 
-          <S.FormItem className={fieldValidation('password') || fieldValidation('User') && 'error'}>
-            <input type="password" name="password" placeholder="password" onChange={onChangeUserData}/>
-          </S.FormItem>
-          {fieldValidation('password') && <S.Error>{fieldValidation('password')}</S.Error>}
+          <Input value={userData.password} type='password' name='password' placeholder='password' errorText={fieldValidation('password')} onChange={onChangeUserData} />
 
           <div style={{textAlign: 'right'}}>
             <button type='button' onClick={onSubmit}>

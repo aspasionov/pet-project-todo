@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import useAuth from "../../hooks/useAuth";
-import { Wrapper, Header, Title, Aside, ToggleButton, Main } from './styles';
+import { Wrapper, Header, Title, Aside, ToggleButton, Main, LoginLinks } from './styles';
+import User from '../User';
 
 const Layout = ({ children }) => {
   const [open, setOpen] = useState(false);
@@ -11,18 +12,6 @@ const Layout = ({ children }) => {
   const auth = useAuth();
 
   const menuLinks = [
-    {
-      id: 1,
-      text: 'Login',
-      path: 'login',
-      protected: false
-    },
-    {
-      id: 2,
-      text: 'Register',
-      path: 'register',
-      protected: false
-    },
     {
       id: 3,
       text: 'Home',
@@ -40,6 +29,11 @@ const Layout = ({ children }) => {
     <Wrapper open={open}>
       <Header>
         <Title>Header</Title>
+        {auth?.user ? <User/> : <LoginLinks>
+          <NavLink to='login'>Login</NavLink>/
+          <NavLink to='register'>Register</NavLink>
+        </LoginLinks>}
+
       </Header>
 
       <Aside open={open}>

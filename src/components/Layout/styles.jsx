@@ -15,12 +15,15 @@ export const Wrapper = styled.div`
 export const Header = styled.header`
   position: sticky;
   top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: rgb(200, 100, 100);
   padding: 10px;
 `;
 
 export const Title = styled.p`
-  text-align: center;
+  font-weight: 700;
   color: #fff;
 `;
 
@@ -66,5 +69,22 @@ export const ToggleButton = styled(Btn)`
   ::before {
     height: 3px;
     top: 10px;
+  }
+`;
+
+export const LoginLinks = styled.main`
+  color: #fff;
+  font-size: 14px;
+  
+  a {
+    color: inherit;
+    margin: 0 10px;
+    transition: all .3s;
+    display: inline-block;
+
+    &:hover {
+      text-decoration: underline;
+      transform: scale(1.2) rotate(-10deg);
+    }
   }
 `;
